@@ -78,7 +78,7 @@ public abstract class KeycardLockBlock extends OwnableBlock {
 					NBTTagCompound tag = stack.getTagCompound();
 					Owner keycardOwner = new Owner(tag.getString("ownerName"), tag.getString("ownerUUID"));
 
-					if (!TeamUtils.areOnSameTeam(be.getOwner(), keycardOwner) || !be.getOwner().getUUID().equals(keycardOwner.getUUID()))
+					if (!TeamUtils.areOnSameTeam(be.getOwner(), keycardOwner) || !be.getOwner().getName().equals(keycardOwner.getName()))
 						PlayerUtils.sendMessageToPlayer(player, Utils.localize(KeycardLockBlock.this), Utils.localize("messages.securitycraft:keycard_lock.different_owner"), TextFormatting.RED);
 				}
 
