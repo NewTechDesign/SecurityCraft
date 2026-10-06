@@ -171,12 +171,12 @@ public class Owner {
 	@Override
 	@Deprecated
 	public boolean equals(Object obj) {
-		return obj instanceof Owner && getName().equals(((Owner) obj).getName()) && getUUID().equals(((Owner) obj).getUUID());
+		return obj instanceof Owner && getName().equals(((Owner) obj).getName());
 	}
 
 	@Override
 	public int hashCode() {
-		return new HashCodeBuilder().append(ownerName).append(ownerUUID).build();
+		return new HashCodeBuilder().append(ownerName).build();
 	}
 
 	public static DataSerializer<Owner> getSerializer() {
