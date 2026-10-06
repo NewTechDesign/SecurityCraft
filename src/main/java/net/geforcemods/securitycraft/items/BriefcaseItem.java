@@ -104,9 +104,8 @@ public class BriefcaseItem extends ColorableItem {
 			return true;
 
 		String ownerName = getOwnerName(briefcase);
-		String ownerUUID = getOwnerUUID(briefcase);
 
-		return ownerName.isEmpty() || ownerUUID.equals(player.getUniqueID().toString()) || (ownerUUID.equals("ownerUUID") && ownerName.equals(player.getName()));
+		return ownerName.isEmpty() || ownerName.equals(player.getName());
 	}
 
 	public static String getOwnerName(ItemStack briefcase) {
