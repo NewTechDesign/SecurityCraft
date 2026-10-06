@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 import net.geforcemods.securitycraft.SecurityCraft;
@@ -108,12 +107,11 @@ public class TrophySystemBlockEntity extends DisguisableBlockEntity implements I
 				boolean shouldTarget = true;
 
 				if (shooter != null) {
-					UUID uuid = shooter instanceof Sentry ? UUID.fromString(((Sentry) shooter).getOwner().getUUID()) : shooter.getUniqueID();
-					String name = shooter instanceof Sentry ? ((Sentry) shooter).getOwner().getName() : shooter.getName();
+					String shooterName = shooter instanceof Sentry ? ((Sentry) shooter).getOwner().getName() : shooter.getName();
 
-					if (uuid != null && uuid.toString().equals(getOwner().getUUID()))
+					if (shooterName != null && shooterName.equals(getOwner().getName()))
 						shouldTarget = !ignoresOwner();
-					else if (isAllowed(name) || TeamUtils.areOnSameTeam(new Owner(shooter), getOwner()))
+					else if (isAllowed(shooterName) || TeamUtils.areOnSameTeam(new Owner(shooter), getOwner()))
 						shouldTarget = false;
 				}
 
