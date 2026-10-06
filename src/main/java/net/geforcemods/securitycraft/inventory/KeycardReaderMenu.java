@@ -47,10 +47,10 @@ public class KeycardReaderMenu extends Container {
 
 				NBTTagCompound tag = stack.getTagCompound();
 				Owner keycardOwner = new Owner(tag.getString("ownerName"), tag.getString("ownerUUID"));
-				String keycardOwnerUUID = keycardOwner.getUUID();
+				String keycardOwnerName = keycardOwner.getName();
 
 				//only allow keycards that have been linked to a keycard reader with the same owner as this keycard reader
-				return keycardOwnerUUID.isEmpty() || (TeamUtils.areOnSameTeam(te.getOwner(), keycardOwner) || keycardOwnerUUID.equals(te.getOwner().getUUID()));
+				return keycardOwnerName.isEmpty() || (TeamUtils.areOnSameTeam(te.getOwner(), keycardOwner) || keycardOwnerName.equals(te.getOwner().getName()));
 			}
 		});
 	}
