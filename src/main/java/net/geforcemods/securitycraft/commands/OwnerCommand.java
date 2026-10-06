@@ -105,7 +105,7 @@ public class OwnerCommand extends CommandTreeBase {
 			IOwnable ownable = (IOwnable) te;
 			Owner previousOwner = ownable.getOwner();
 
-			if (!previousOwner.getUUID().equals(uuid) || !previousOwner.getName().equals(name)) {
+			if (!previousOwner.getName().equals(name)) {
 				IBlockState state = world.getBlockState(pos);
 				Owner oldOwner = ownable.getOwner().copy();
 
@@ -218,7 +218,7 @@ public class OwnerCommand extends CommandTreeBase {
 							IOwnable ownable = (IOwnable) te;
 							Owner previousOwner = ownable.getOwner();
 
-							if (!previousOwner.getUUID().equals(uuid) || !previousOwner.getName().equals(name)) {
+							if (!previousOwner.getName().equals(name)) {
 								Owner oldOwner = ownable.getOwner().copy();
 								ownable.setOwner(uuid, name);
 								modifiedBlocks.add(new OwnerChange((TileEntity) ownable, oldOwner));
