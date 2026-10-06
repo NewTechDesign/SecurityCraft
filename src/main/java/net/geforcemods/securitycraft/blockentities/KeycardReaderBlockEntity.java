@@ -172,7 +172,7 @@ public class KeycardReaderBlockEntity extends DisguisableBlockEntity implements 
 		String usableBy = tag.getString("usable_by");
 
 		//owner of this keycard reader and the keycard reader the keycard got linked to do not match
-		if (!TeamUtils.areOnSameTeam(getOwner(), keycardOwner) || !getOwner().getUUID().equals(keycardOwner.getUUID()))
+		if (!TeamUtils.areOnSameTeam(getOwner(), keycardOwner) || !getOwner().getName().equals(keycardOwner.getName()))
 			return new TextComponentTranslation("messages.securitycraft:keycardReader.differentOwner");
 
 		//the name of the player who can use the keycard does not match the one of the player trying to use it
