@@ -116,16 +116,10 @@ public interface IOwnable {
 		if (TeamUtils.areOnSameTeam(self, otherOwner))
 			return true;
 
-		String selfUUID = self.getUUID();
-		String otherUUID = otherOwner.getUUID();
+		String selfName = self.getName();
 		String otherName = otherOwner.getName();
 
-		// Check the player's UUID first.
-		if (otherUUID != null && otherUUID.equals(selfUUID))
-			return true;
-
-		// If the BlockEntity doesn't have a UUID saved, use the player's name instead.
-		return otherName != null && (selfUUID.equals("ownerUUID") || otherUUID.equals("ownerUUID")) && otherName.equals(self.getName());
+		return otherName != null && otherName.equals(selfName);
 	}
 
 	/**
@@ -142,7 +136,13 @@ public interface IOwnable {
 			return false;
 
 		animalOwnerUUID = ((IEntityOwnable) entity).getOwnerId();
-		return animalOwnerUUID != null && (animalOwnerUUID.toString().equals(beOwner.getUUID()) || TeamUtils.areOnSameTeam(beOwner, new Owner(((IEntityOwnable) entity).getOwner())));
+
+		if (animalOwnerUUID != null && animalOwnerUUID.toString().equals(beOwner.getUUID()))
+			return true;
+
+		Entity animalOwner = ((IEntityOwnable) entity).getOwner();
+
+		return animalOwner != null && TeamUtils.areOnSameTeam(beOwner, new Owner(animalOwner));
 	}
 
 	/**
